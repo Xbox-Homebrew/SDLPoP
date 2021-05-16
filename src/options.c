@@ -509,7 +509,7 @@ void load_dos_exe_modifications(const char* folder_name) {
 
 	int dos_version = -1;
 	struct stat info;
-	if (fp != NULL && fstat(fileno(fp), &info) == 0 && info.st_size > 0) {
+	if (fp != NULL && fstat(_fileno(fp), &info) == 0 && info.st_size > 0) {
 		dos_version = identify_dos_exe_version(info.st_size);
 	} else {
 		// PRINCE.EXE not found, try to search for other .EXE files in the same folder.
@@ -519,7 +519,7 @@ void load_dos_exe_modifications(const char* folder_name) {
 				char* current_filename = get_current_filename_from_directory_listing(directory_listing);
 				snprintf(filename, sizeof(filename), "%s/%s", folder_name, current_filename);
 				fp = fopen(filename, "rb");
-				if (fp != NULL && fstat(fileno(fp), &info) == 0 && info.st_size > 0) {
+				if (fp != NULL && fstat(_fileno(fp), &info) == 0 && info.st_size > 0) {
 					dos_version = identify_dos_exe_version(info.st_size);
 					if (dos_version >= 0) {
 						break; // We found a DOS executable with the right size!

@@ -2128,7 +2128,8 @@ unsigned int crc32c(unsigned char *message, size_t size) {
 		for (byte = 0; byte <= 255; byte++) {
 			crc = byte;
 			for (j = 7; j >= 0; j--) {    // Do eight times.
-				mask = -(crc & 1);
+				mask = (crc & 1);
+				//mask = -(crc & 1);
 				crc = (crc >> 1) ^ (0xEDB88320 & mask);
 			}
 			table[byte] = crc;

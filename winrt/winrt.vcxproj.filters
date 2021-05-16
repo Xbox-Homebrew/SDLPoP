@@ -23,6 +23,12 @@
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
       <Filter>Assets</Filter>
     </Image>
+    <Filter Include="source">
+      <UniqueIdentifier>{d3fdede2-adeb-425d-8055-68ab011daf1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{56e6702c-f4be-417b-9287-20511e0065b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\StoreLogo.png">
@@ -33,35 +39,98 @@
     <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\data.c" />
-    <ClCompile Include="..\src\lighting.c" />
-    <ClCompile Include="..\src\main.c" />
-    <ClCompile Include="..\src\menu.c" />
-    <ClCompile Include="..\src\midi.c" />
-    <ClCompile Include="..\src\opl3.c" />
-    <ClCompile Include="..\src\options.c" />
-    <ClCompile Include="..\src\replay.c" />
-    <ClCompile Include="..\src\screenshot.c" />
-    <ClCompile Include="..\src\seg000.c" />
-    <ClCompile Include="..\src\seg001.c" />
-    <ClCompile Include="..\src\seg002.c" />
-    <ClCompile Include="..\src\seg003.c" />
-    <ClCompile Include="..\src\seg004.c" />
-    <ClCompile Include="..\src\seg005.c" />
-    <ClCompile Include="..\src\seg006.c" />
-    <ClCompile Include="..\src\seg007.c" />
-    <ClCompile Include="..\src\seg008.c" />
-    <ClCompile Include="..\src\seg009.c" />
-    <ClCompile Include="..\src\seqtbl.c" />
-    <ClCompile Include="..\src\stb_vorbis.c" />
+    <ClCompile Include="..\src\data.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\lighting.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\menu.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\midi.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\opl3.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\options.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\replay.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\screenshot.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg000.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg002.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg001.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\stb_vorbis.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg003.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg004.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg005.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg006.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg007.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg008.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seg009.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\seqtbl.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Externals\SDL2\src\main\winrt\SDL_winrt_main_NonXAML.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\common.h" />
-    <ClInclude Include="..\src\config.h" />
-    <ClInclude Include="..\src\data.h" />
-    <ClInclude Include="..\src\GPLv3.h" />
-    <ClInclude Include="..\src\opl3.h" />
-    <ClInclude Include="..\src\proto.h" />
-    <ClInclude Include="..\src\types.h" />
+    <ClInclude Include="..\src\common.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\config.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\data.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GPLv3.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\opl3.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\proto.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Externals\SDL2\src\main\winrt\SDL2-WinRTResource_BlankCursor.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Externals\SDL2\src\main\winrt\SDL2-WinRTResources.rc" />
   </ItemGroup>
 </Project>
