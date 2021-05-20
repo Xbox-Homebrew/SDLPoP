@@ -1,7 +1,7 @@
 UWP SDLPoP
 ======
 
-An open-source port of Prince of Persia, based on the disassembly of the DOS version, extended with new features.
+An open-source port of Prince of Persia to Xbox One and Series consoles via UWP, based on the disassembly of the DOS version, extended with new features.
 
 Links
 -----
