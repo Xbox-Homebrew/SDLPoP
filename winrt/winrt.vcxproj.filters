@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Externals\SDL2\src\main\winrt\SDL2-WinRTResource_BlankCursor.cur" />
+    <None Include="..\SDLPoP.ini" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Externals\SDL2\src\main\winrt\SDL2-WinRTResources.rc" />

@@ -44,7 +44,7 @@ bool found_exe_dir = false;
 
 void find_exe_dir() {
 	if (found_exe_dir) return;
-	snprintf_check(exe_dir, sizeof(exe_dir), "%s", Windows::ApplicationModel::Package::Current->InstalledLocation->Path);
+	snprintf_check(exe_dir, sizeof(exe_dir), "%s", Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 	char* last_slash = NULL;
 	char* pos = exe_dir;
 	for (char c = *pos; c != '\0'; c = *(++pos)) {

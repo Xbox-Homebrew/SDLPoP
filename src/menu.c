@@ -2174,8 +2174,8 @@ void calculate_exe_crc() {
 void save_ingame_settings() {
 	SDL_RWops* rw = SDL_RWFromFile(locate_file("SDLPoP.cfg"), "wb");
 	if (rw != NULL) {
-		calculate_exe_crc();
-		SDL_RWwrite(rw, &exe_crc, sizeof(exe_crc), 1);
+		//calculate_exe_crc();
+		//SDL_RWwrite(rw, &exe_crc, sizeof(exe_crc), 1);
 		byte levelset_name_length = (byte)strnlen(levelset_name, UINT8_MAX);
 		SDL_RWwrite(rw, &levelset_name_length, sizeof(levelset_name_length), 1);
 		SDL_RWwrite(rw, levelset_name, levelset_name_length, 1);
@@ -2200,13 +2200,13 @@ void load_ingame_settings() {
 	// If there is a SDLPoP.cfg file, let it override the settings
 	SDL_RWops* rw = SDL_RWFromFile(cfg_filename, "rb");
 	if (rw != NULL) {
-		// SDLPoP.cfg should be invalidated if the prince executable changes.
+		/*// SDLPoP.cfg should be invalidated if the prince executable changes.
 		// This allows us not to worry about future and backward compatibility of this file.
 		calculate_exe_crc();
 		dword expected_crc = 0;
 		SDL_RWread(rw, &expected_crc, sizeof(expected_crc), 1);
-//		printf("CRC-32: exe = %x, expected = %x\n", exe_crc, expected_crc);
-		if (exe_crc == expected_crc) {
+//		printf("CRC-32: exe = %x, expected = %x\n", exe_crc, expected_crc);*/
+		if (true) {
 			byte cfg_levelset_name_length;
 			char cfg_levelset_name[256] = {0};
 			SDL_RWread(rw, &cfg_levelset_name_length, sizeof(cfg_levelset_name_length), 1);

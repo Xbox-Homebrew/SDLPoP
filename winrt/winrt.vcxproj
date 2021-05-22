@@ -403,6 +403,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\SDLPoP.ini">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="Externals\SDL2\src\main\winrt\SDL2-WinRTResource_BlankCursor.cur" />
   </ItemGroup>
   <ItemGroup>
