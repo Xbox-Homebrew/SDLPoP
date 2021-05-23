@@ -44,7 +44,8 @@ bool found_exe_dir = false;
 
 void find_exe_dir() {
 	if (found_exe_dir) return;
-	snprintf_check(exe_dir, sizeof(exe_dir), "%s", Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+	wcstombs(exe_dir, Windows::Storage::ApplicationData::Current->LocalFolder->Path->Data(), POP_MAX_PATH);
+	/*snprintf_check(exe_dir, sizeof(exe_dir), "%s", Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 	char* last_slash = NULL;
 	char* pos = exe_dir;
 	for (char c = *pos; c != '\0'; c = *(++pos)) {
@@ -54,7 +55,7 @@ void find_exe_dir() {
 	}
 	if (last_slash != NULL) {
 		*last_slash = '\0';
-	}
+	}*/
 	found_exe_dir = true;
 }
 

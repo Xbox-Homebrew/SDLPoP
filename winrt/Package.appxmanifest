@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="a4d2e393-3689-46e4-8fa0-0671f8c1dc61"
+    Name="SDLPoP"
     Publisher="CN=t3"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="a4d2e393-3689-46e4-8fa0-0671f8c1dc61" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>winrt</DisplayName>
+    <DisplayName>Prince of Persia</DisplayName>
     <PublisherDisplayName>t3</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
