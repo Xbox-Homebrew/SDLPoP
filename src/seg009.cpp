@@ -64,14 +64,23 @@ bool file_exists(const char* filename) {
 }
 
 const char* locate_file_(const char* filename, char* path_buffer, int buffer_size) {
-	if(file_exists(filename)) {
-		return filename;
+	find_exe_dir();
+	snprintf_check(path_buffer, buffer_size, "%s\\%s", exe_dir, filename);
+	if(file_exists(path_buffer)) {
+		return (const char*)path_buffer;
 	} else {
+		/*
+		// old functionality
 		// If failed, it may be that SDLPoP is being run from the wrong different working directory.
 		// We can try to rescue the situation by loading from the directory of the executable.
 		find_exe_dir();
-        snprintf_check(path_buffer, buffer_size, "%s/%s", exe_dir, filename);
-        return (const char*) path_buffer;
+		snprintf_check(path_buffer, buffer_size, "%s/%s", exe_dir, filename);
+		return (const char*)path_buffer;
+		*/
+
+		//can't find file in localstate, load built in version instead
+		return filename;
+
 	}
 }
 
@@ -331,21 +340,41 @@ int __pascal far pop_wait(int timer_index,int time) {
 }
 
 static FILE* open_dat_from_root_or_data_dir(const char* filename) {
+	char data_path[POP_MAX_PATH];
 	FILE* fp = NULL;
-	fp = fopen(filename, "rb");
+	struct stat path_stat;
+
+	//try get it from the localstate
+	if (!file_exists(data_path)) {
+		find_exe_dir();
+		snprintf_check(data_path, sizeof(data_path), "%s/data/%s", exe_dir, filename);
+	}
+
+	// verify that this is a regular file and not a directory (otherwise, don't open)
+	stat(data_path, &path_stat);
+	if (S_ISREG(path_stat.st_mode)) {
+		fp = fopen(data_path, "rb");
+	}
+
+	//failed to load from localstate
+	if (fp == NULL) {
+		//load from current dir
+		fp = fopen(filename, "rb");
+	}
 
 	// if failed, try if the DAT file can be opened in the data/ directory, instead of the main folder
 	if (fp == NULL) {
-		char data_path[POP_MAX_PATH];
-		snprintf_check(data_path, sizeof(data_path), "data/%s", filename);
+		
+		//try opening the dat in the data folder
+		snprintf_check(data_path, sizeof(data_path), "data\\%s", filename);
 
+		//try get it from the localstate again just in case ya know
         if (!file_exists(data_path)) {
-            find_exe_dir();
-            snprintf_check(data_path, sizeof(data_path), "%s/data/%s", exe_dir, filename);
+            //find_exe_dir();
+            snprintf_check(data_path, sizeof(data_path), "%s\\data\\%s", exe_dir, filename);
         }
 
 		// verify that this is a regular file and not a directory (otherwise, don't open)
-		struct stat path_stat;
 		stat(data_path, &path_stat);
 		if (S_ISREG(path_stat.st_mode)) {
 			fp = fopen(data_path, "rb");
@@ -2752,10 +2781,16 @@ void load_from_opendats_metadata(int resource_id, const char* extension, FILE** 
 			if (len >= 5 && filename_no_ext[len-4] == '.') {
 				filename_no_ext[len-4] = '\0'; // terminate, so ".DAT" is deleted from the filename
 			}
-			snprintf_check(image_filename,sizeof(image_filename),"data/%s/res%d.%s",filename_no_ext, resource_id, extension);
+			snprintf_check(image_filename,sizeof(image_filename),"data\\%s\\res%d.%s",filename_no_ext, resource_id, extension);
 			if (!use_custom_levelset) {
 				//printf("loading (binary) %s",image_filename);
-				fp = fopen(locate_file(image_filename), "rb");
+				find_exe_dir();
+				char data_path[POP_MAX_PATH];
+				snprintf_check(data_path, sizeof(data_path), "%s\\%s", exe_dir, image_filename);
+				fp = fopen(data_path, "rb");
+				if (fp == NULL) {
+						fp = fopen(locate_file(image_filename), "rb");
+				}
 			}
 			else {
 				if (!skip_mod_data_files) {
